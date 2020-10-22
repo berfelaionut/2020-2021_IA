@@ -1,0 +1,25 @@
+#include <iostream>
+#include <conio.h> //inclus doar pentru _getch() ca sa inlocuiesc cin.get(d,1) sau scanf("%c";&c) + _getch() nu asteapta confirmare de la utilizator ca sa citeasca variabila.
+#include <cstdlib> //pentru a putea folosi system("CLS").
+using namespace std;
+
+int main()
+{
+	char c;
+	printf("Programul se opreste apasand tasta ESC. Escape are codul ASCII: 27. Enter(Carriage Return) are codul ASCII: 13. \n"); //informatii suplimentare pentru user.
+	while (1) //se putea folosi si while(int(c)=!0), dar caracter c nu are o valoare, deci e adevarata expresia, dar am zis sa merg la sigur. Oricumm e doar initializata o structura repetitiva care sa fie adevarata mereu. Ea fiind oricum oprita de break; la linia 16.
+	{
+		printf("Introduceti un caracter : ");
+		c = _getch(); //citeste orice caracter introdus de la tastatura.
+		system("CLS"); //curata consola. Cel mai bine era pus la final, dar l-am pus aici doar ca sa nu folosesc si system("pause").
+		if (int(c) == 27) //Tasta ESC are codul ASCII 27, astfel, cand e intalnit caracterul special Escape, programul incheie struc. repetitiva si afiseaza mesajul.
+		{
+			printf("\nA fost detectata tasta \"ESC\", cu codul ASCII %d.",c); //In loc de "ESC" trebuia pus %c, dar caracterul Escape este un caracter special si necesita mai multa munca ca sa-l pot afisa ca si %c. Ingreuna programul, deci nu se merita.
+			break; //opreste structura repetitiva.
+		
+		} else {
+			printf("Codul ASCII caracterului \"%c\" este: %d\n", c, c); //daca nu este intalnit codul ASCII 27, programul afiseaza codul caracterului citit.
+		}
+	}
+	return 0;
+}
